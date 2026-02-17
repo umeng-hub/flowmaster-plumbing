@@ -1,0 +1,168 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #060d1a;
+    color: #f0f4ff;
+    overflow-x: hidden;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #060d1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #ff6b1a;
+    border-radius: 3px;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-copper-500 hover:bg-copper-400 text-white font-semibold px-8 py-4 rounded-none 
+           transition-all duration-300 tracking-wide uppercase text-sm
+           hover:shadow-[0_0_30px_rgba(255,107,26,0.4)] active:scale-95;
+  }
+
+  .btn-secondary {
+    @apply border border-copper-500 text-copper-500 hover:bg-copper-500 hover:text-white 
+           font-semibold px-8 py-4 rounded-none transition-all duration-300 
+           tracking-wide uppercase text-sm active:scale-95;
+  }
+
+  .btn-white {
+    @apply bg-white text-navy-900 hover:bg-copper-500 hover:text-white 
+           font-semibold px-8 py-4 rounded-none transition-all duration-300 
+           tracking-wide uppercase text-sm active:scale-95;
+  }
+
+  .section-tag {
+    @apply text-copper-500 font-bebas tracking-[0.3em] text-sm uppercase;
+  }
+
+  .section-title {
+    @apply font-bebas text-5xl md:text-6xl lg:text-7xl leading-none text-white;
+  }
+
+  .card-glass {
+    @apply bg-white/5 backdrop-blur-sm border border-white/10 
+           hover:border-copper-500/40 transition-all duration-500;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-copper-400 to-copper-600 bg-clip-text text-transparent;
+  }
+
+  .nav-link {
+    @apply text-slate-300 hover:text-copper-400 transition-colors duration-200 
+           text-sm font-medium tracking-wide uppercase relative
+           after:content-[''] after:absolute after:bottom-0 after:left-0 
+           after:w-0 after:h-0.5 after:bg-copper-500 
+           after:transition-all after:duration-300
+           hover:after:w-full;
+  }
+
+  .service-card {
+    @apply card-glass p-8 group cursor-pointer relative overflow-hidden
+           hover:shadow-[0_20px_60px_rgba(255,107,26,0.15)];
+  }
+
+  .input-field {
+    @apply w-full bg-white/5 border border-white/20 text-white placeholder-slate-500
+           px-4 py-3 focus:outline-none focus:border-copper-500 transition-colors duration-300
+           font-dm text-sm;
+  }
+  
+  .diagonal-cut {
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+  }
+  
+  .diagonal-cut-bottom {
+    clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@layer utilities {
+  .text-shadow-lg {
+    text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  }
+
+  .bg-noise {
+    position: relative;
+  }
+
+  .bg-noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pipe-decoration {
+    background: linear-gradient(90deg, transparent, #ff6b1a33, transparent);
+    height: 1px;
+    width: 100%;
+  }
+}
+
+/* Custom animations */
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  animation: marquee 25s linear infinite;
+}
+
+@keyframes counterUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.counter-animate {
+  animation: counterUp 0.8s ease-out forwards;
+}
+
+/* Water drip animation */
+@keyframes drip {
+  0% { transform: scaleY(0); transform-origin: top; opacity: 1; }
+  70% { transform: scaleY(1); transform-origin: top; opacity: 1; }
+  100% { transform: scaleY(1); transform-origin: top; opacity: 0; }
+}
+
+.drip {
+  animation: drip 2s ease-in infinite;
+}
