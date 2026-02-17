@@ -12,6 +12,10 @@
     "start": "npm start --prefix backend",
     "seed": "npm run seed --prefix backend"
   },
+  "dependencies": {
+  "mongoose": "^8.0.0",
+  "express": "^4.18.2"
+},
   "devDependencies": {
     "concurrently": "^8.2.2"
   }
